@@ -471,20 +471,7 @@ static id _instance;
 
 + (NSArray *)systemFilesDict {
     return [NSArray arrayWithObjects:
-//                                    @"/tmp",
-                                    @"/var/vm",
-                                    @"/var/logs/CrashReporter",
-                                    @"/var/mobile/Library/CrashReporter",
-//                                    @"/var/mobile/Library/Caches",
-//                                    @"/var/mobile/Library/Cookies",
-                                    @"/var/mobile/Library/Cookies/Cookies.binarycookies",
-                                    @"/var/mobile/Library/Logs",
-                                    @"/var/mobile/Library/tmp",
-                                    @"/var/mobile/Library/BatteryLift/CrashReporter",
-                                    @"/var/log/syslog",
-                                    @"/User/Media/ApplicationArchives",
-                                    @"/User/Media/PublicStaging",
-                                    @"/var/mobile/Media/ApplicationArchives",
+//                                    @"/tmp"
                                     nil];
 }
 
