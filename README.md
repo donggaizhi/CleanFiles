@@ -14,10 +14,12 @@
 [CleanFilesManage shareInstance].cleanState = CleanStateNone;
 
 typedef enum  {
+
     CleanStateNone,                   //初始状态
     CleanStateScanning,               //正在扫描
     CleanStateFromWhiteListScanning,
     CleanStateScanFinish,             //扫描完毕
     CleanStateCleaning,               //正在清理
     CleanStateCleanFinish             //清理完毕
+    
 }CleanState;
