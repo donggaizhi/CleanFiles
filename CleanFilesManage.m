@@ -480,9 +480,9 @@ static id _instance;
 + (NSString *)getCacheSize
 {
     NSArray *cachePaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *local_cacheDir = [cachePaths[0] stringByAppendingPathComponent:@"com.jailbreak.kk"];
-    NSString *sdimage_cacheDir = [cachePaths[0] stringByAppendingPathComponent:@"default/com.hackemist.SDWebImageCache.default"];
-    NSString *tmdisk_cacheDir = [cachePaths[0] stringByAppendingPathComponent:@"com.tumblr.TMDiskCache.TMCacheShared"];
+    NSString *local_cacheDir = [cachePaths[0] stringByAppendingPathComponent:@""];
+    NSString *sdimage_cacheDir = [cachePaths[0] stringByAppendingPathComponent:@""];
+    NSString *tmdisk_cacheDir = [cachePaths[0] stringByAppendingPathComponent:@""];
     
     CGFloat totalCacheCount =
     [self folderSizeAtPath:local_cacheDir] +
@@ -522,9 +522,9 @@ static id _instance;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
        , ^{
            NSString *cachPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-           NSString *local_cachPath = [cachPath stringByAppendingString:@"/com.jailbreak.kk"];
-           NSString *sdimage_cachPath = [cachPath stringByAppendingString:@"/default/com.hackemist.SDWebImageCache.default"];
-           NSString *tmdisk_cachPath = [cachPath stringByAppendingString:@"/com.tumblr.TMDiskCache.TMCacheShared"];
+           NSString *local_cachPath = [cachPath stringByAppendingString:@""];
+           NSString *sdimage_cachPath = [cachPath stringByAppendingString:@""];
+           NSString *tmdisk_cachPath = [cachPath stringByAppendingString:@""];
            [self removeFile:local_cachPath];
            [self removeFile:sdimage_cachPath];
            [self removeFile:tmdisk_cachPath];
