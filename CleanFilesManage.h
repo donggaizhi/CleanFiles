@@ -42,7 +42,7 @@ typedef enum  {
 
 @end
 
-@class PaaModel;
+@class AppModel;
 
 @interface CleanFilesManage : NSObject
 
@@ -96,7 +96,7 @@ typedef enum  {
 - (void)deleteCleanDict:(NSString *)bundle;
 
 //增加系统垃圾的信息
-+ (PaaModel *)addSystemFilesInfo;
++ (AppModel *)addSystemFilesInfo;
 
 //使系统垃圾最后一个扫描
 + (NSArray *)changeSystemToShowFirst:(NSMutableArray *)array;

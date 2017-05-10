@@ -8,8 +8,7 @@
 
 #import "CleanFilesManage.h"
 #import "FileUtil.h"
-#import "PaaUtil.h"
-#import "PaaModel.h"
+#import "AppModel.h"
 #import "CleanFilesEx.h"
 
 #define freshUnit SizeUnit*100
@@ -86,7 +85,7 @@ static id _instance;
         
         [allAppInfoArray enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if (self.cleanState == CleanStateNone || self.delegate == nil) *stop = YES;
-            PaaModel *model = obj;
+            AppModel *model = obj;
             NSMutableArray *allScanArray = [NSMutableArray array];
             NSString *appID = model.identifier;
             if ([appID isEqualToString:@"systemFiles"]) {
@@ -367,7 +366,7 @@ static id _instance;
 #pragma mark 获取所有的app信息
 + (NSArray *)getAllAppInfo {
     NSMutableArray *array = [[[CleanFilesEx shareInstance] getPaas:CleanFilesExPaaTypeClean] mutableCopy];
-    PaaModel *sysModel = [CleanFilesManage addSystemFilesInfo];
+    AppModel *sysModel = [CleanFilesManage addSystemFilesInfo];
     [array addObject:sysModel];
     return array;
 }
@@ -397,7 +396,7 @@ static id _instance;
         NSMutableDictionary *stateDict = [NSMutableDictionary dictionary];
         
         [[CleanFilesManage getAllAppInfo] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            PaaModel *model = obj;
+            AppModel *model = obj;
             stateDict[model.identifier] = @"NO";
         }];
         [stateDict writeToFile:fileName atomically:YES];
@@ -405,7 +404,7 @@ static id _instance;
         NSMutableDictionary *tmpDict = [[CleanFilesManage readStateFile:fileName] mutableCopy];
         NSMutableDictionary *newDict = [NSMutableDictionary dictionary];
         [[CleanFilesManage getAllAppInfo] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            PaaModel *model = obj;
+            AppModel *model = obj;
             NSString *tmpBundID = model.identifier;
             __block BOOL hasBundle = NO;
             [tmpDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
@@ -437,8 +436,8 @@ static id _instance;
     [dict writeToFile:fileName atomically:YES];
 }
 
-+ (PaaModel *)addSystemFilesInfo {
-    PaaModel *sysModel = [[PaaModel alloc] init];
++ (AppModel *)addSystemFilesInfo {
+    AppModel *sysModel = [[AppModel alloc] init];
     sysModel.identifier = @"systemFiles";
     sysModel.ln = @"系统垃圾";
     sysModel.icon = UIImagePNGRepresentation([UIImage imageNamed:@"cleanFiles_systemFiles"]);
@@ -446,8 +445,8 @@ static id _instance;
 }
 
 + (NSArray *)changeSystemToShowFirst:(NSMutableArray *)array {
-    __block PaaModel *model = [[PaaModel alloc] init];
-    [array enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(PaaModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    __block AppModel *model = [[AppModel alloc] init];
+    [array enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(AppModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.identifier isEqualToString:@"systemFiles"]) {
             model = obj;
             [array removeObjectAtIndex:idx];
